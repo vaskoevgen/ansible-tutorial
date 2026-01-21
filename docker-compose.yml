@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  control:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.control
+    volumes:
+      - .:/ansible
+    depends_on:
+      - target
+    # Copy the SSH key to the target container to allow passwordless SSH
+    command: >
+      sh -c "apt-get update && apt-get install -y sshpass &&
+             sshpass -p 'root' ssh-copy-id -o StrictHostKeyChecking=no root@target &&
+             tail -f /dev/null"
+
+  target:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.target
+    expose:
+      - "22"
