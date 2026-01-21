@@ -1,0 +1,21 @@
+---
+- name: Create Multiple Users
+  hosts: all
+  become: true
+  vars:
+    users_to_create:
+      - username: alice
+        groups: sudo
+      - username: bob
+        groups: sudo
+      - username: charlie
+        groups: sudo
+
+  tasks:
+    - name: Ensure users exist
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        groups: "{{ item.groups }}"
+        state: present
+        shell: /bin/bash
+      loop: "{{ users_to_create }}"

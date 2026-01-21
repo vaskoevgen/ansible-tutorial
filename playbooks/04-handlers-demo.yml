@@ -1,0 +1,22 @@
+---
+- name: Handlers Demo
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Create a custom index.html
+      ansible.builtin.copy:
+        content: "Hello from Ansible Handlers!"
+        dest: /var/www/html/index.html
+        mode: '0644'
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

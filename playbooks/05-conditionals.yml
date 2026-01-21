@@ -1,0 +1,20 @@
+---
+- name: Conditionals Demo
+  hosts: all
+  become: true
+  tasks:
+    - name: Check if a specific file exists
+      ansible.builtin.stat:
+        path: /tmp/flag_file
+      register: file_check
+
+    - name: Create the file if it does not exist
+      ansible.builtin.file:
+        path: /tmp/flag_file
+        state: touch
+      when: not file_check.stat.exists
+
+    - name: Print a message if the OS is Ubuntu
+      ansible.builtin.debug:
+        msg: "This is an Ubuntu system"
+      when: ansible_facts['distribution'] == "Ubuntu"
