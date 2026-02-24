@@ -65,6 +65,17 @@ This repository provides a self-contained Ansible environment using Docker. It i
     ansible-playbook playbooks/06-read-facts.yml
     ```
 
+    Filtering for Specific Facts
+    Since the full output is usually hundreds of lines long, you can use the filter argument to find exactly what you need:
+
+    `ansible all -m setup -a "filter=ansible_distribution*"` OS name and version
+
+    `ansible all -m setup -a "filter=ansible_eth*"` Network interface details
+
+    `ansible all -m setup -a "filter=ansible_memtotal_mb"` Total RAM available
+
+    `ansible all -m setup -a "filter=ansible_processor*"` CPU details
+
     Use an Ansible Role to configure Nginx:
 
     ```bash
