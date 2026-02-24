@@ -1,0 +1,3 @@
+---
+# vars file for nginx
+nginx_greeting: "Hello from Ansible Role!"

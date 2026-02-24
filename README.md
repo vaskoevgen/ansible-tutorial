@@ -65,6 +65,12 @@ This repository provides a self-contained Ansible environment using Docker. It i
     ansible-playbook playbooks/06-read-facts.yml
     ```
 
+    Use an Ansible Role to configure Nginx:
+
+    ```bash
+    ansible-playbook playbooks/07-use-role.yml
+    ```
+
 ## Files Structure
 
 - `docker/`: Contains Dockerfiles for the control and target nodes.
