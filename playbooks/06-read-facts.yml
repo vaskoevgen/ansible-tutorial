@@ -1,0 +1,11 @@
+---
+- name: Read and print Ansible facts
+  hosts: target
+  tasks:
+    - name: Print the operating system family
+      debug:
+        msg: "The target OS is {{ ansible_facts['os_family'] }}"
+
+    - name: "Print all gathered facts (Warning: This is a lot of output!)"
+      debug:
+        var: ansible_facts

@@ -59,6 +59,12 @@ This repository provides a self-contained Ansible environment using Docker. It i
     ansible-playbook playbooks/05-conditionals.yml
     ```
 
+    Read and print Ansible facts:
+
+    ```bash
+    ansible-playbook playbooks/06-read-facts.yml
+    ```
+
 ## Files Structure
 
 - `docker/`: Contains Dockerfiles for the control and target nodes.
